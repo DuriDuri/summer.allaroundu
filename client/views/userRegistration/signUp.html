@@ -1,0 +1,70 @@
+<template name="signUp">
+
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui blue image header">
+      <img src="logo.png" class="image">
+      <div class="content">
+        Let's get you started
+      </div>
+    </h2>
+    
+    <form class="ui large form" id='signUpForm'>
+      	<div class="ui stacked segment">
+		        
+		        <div class="field">
+		          <div class="ui left icon input">
+		            <i class="user icon"></i>
+		            <input type="text" name="email" placeholder="E-mail address">
+		          </div>
+		        </div>
+		        
+		        <div class="field">
+		          <div class="ui left icon input">
+		            <i class="lock icon"></i>
+		            <input type="password" name="password" placeholder="Password">
+		          </div>
+		        </div>
+
+		        <div class="field">
+				    <div class="two fields">
+				      	<div class="field">
+				        	<input type="text" name="firstName" placeholder="First Name">
+				      	</div>
+				     	<div class="field">
+				        	<input type="text" name="lastName" placeholder="Last Name">
+				      </div>
+				    </div>
+				</div>
+
+				
+			    <div class="field">
+			      <div class="two fields">
+			        <div class="field">
+				    	<input type="text" name="phoneNumber" maxlength="3" placeholder="Phone Number">
+				    </div>
+			        <div class="field">
+			          <select class="ui fluid search dropdown" name="year">
+			            <option value="">Class of</option>
+			            <option value="2016">2016</option>
+			            <option value="2017">2017</option>
+			            <option value="2018">2018</option>
+			            <option value="2019">2019</option>
+			          </select>
+			        </div>
+			       </div>
+			    </div>
+			    
+
+		        <div class="ui fluid large blue button" id='submitForm'>Get me started!</div>
+		</div>
+    </form>
+
+  </div>
+
+
+</div>
+
+
+</template>
