@@ -1,15 +1,16 @@
 /*
-	Client side accounts config file
+  Client side accounts config file
 
-	Place top-level code here
- */
+  Place top-level code here
+
+*/
 
 
 var doneCallback;
 
 Accounts.onResetPasswordLink(function(token, done) {
  // send back to /forgotPassword page
-  Router.go("/forgotPassword");
+  Router.go("/forgotmypassword");
 
   // Set a new session variable with the reset token from email
   Session.set('resetPassword', token);  

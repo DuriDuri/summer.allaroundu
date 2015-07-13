@@ -51,6 +51,14 @@ Template.signUp.events({
 });
 
 
+
+
+
+
+
+
+
+
 Template.signUp.onRendered( function(){
 	// Initialize dropdown
 	$('select.dropdown').dropdown();
@@ -127,8 +135,6 @@ Template.signUp.onRendered( function(){
 	     		}
 	     	}
 	});
-
-
 });
 
 
