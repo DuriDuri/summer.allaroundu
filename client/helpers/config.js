@@ -28,7 +28,7 @@ Accounts.onResetPasswordLink(function(token, done) {
 Accounts.onEmailVerificationLink(function(token, done){
 	//Marks verified as true
 	Accounts.verifyEmail(token);
-	Router.go("/intersection");
+	Router.go("/home");
 });
 
 
