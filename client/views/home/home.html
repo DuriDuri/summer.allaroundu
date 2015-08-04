@@ -1,142 +1,67 @@
 <template name="home">
-<div class="container">
-    <div class="row">
-      <div class="half">
-        <h4>Autocomplete Only</h4>
-        <input id="place1" type="text" name="place" placeholder="Start typing...">
-      </div>
-      <div class="half">
-        <h4>Autocomplete + Map</h4>
-        <input id="place2" type="text" name="place" placeholder="Start typing...">
-        <div id="map"></div>
-      </div>
+
+
+    <div class="ui grid">
+        <div class="computer tablet only row">
+            <div class="ui inverted fixed menu navbar page grid">
+                <a href="" class="brand item">summer.AllAroundU</a>
+                <a href="#" class="active item">Home</a>
+                <a href="" class="item">About</a>
+                {{#if currentUser}}
+                <div class="right menu">
+                    <a href="" class="active item">Logout</a>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="mobile only row">
+            <div class="ui fixed inverted navbar menu">
+                <a href="" class="brand item">summer.AllAroundU</a>
+                <div class="right menu open">
+                    <a href="" class="menu item">
+                        <i class="reorder icon"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ui vertical navbar menu">
+                <a href="" class="active item">Home</a>
+                <a href="" class="item">About</a>
+                {{#if currentUser}}
+                <div class="menu">
+
+                    <a href="" class="active item" id="logout">Logout</a>
+                </div>
+                {{/if}}
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="half">
-        <h4>Autocomplete + Map + Form Fill</h4>
-        <input id="place3" type="text" name="place" placeholder="Start typing...">
-        <div id="map2"></div>
-      </div>
-      <div class="half">
-        <form>
-          <fieldset>
-            <h3>⇽ automatically populates fields below</h3>
-
-            <div class="input-group">
-              <label>Name</label>
-              <input name="name" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>POI Name</label>
-              <input name="point_of_interest" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Latitude</label>
-              <input name="lat" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Longitude</label>
-              <input name="lng" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Location</label>
-              <input name="location" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Location Type</label>
-              <input name="location_type" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Formatted Address</label>
-              <input name="formatted_address" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Bounds</label>
-              <input name="bounds" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Viewport</label>
-              <input name="viewport" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Route</label>
-              <input name="route" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Street Number</label>
-              <input name="street_number" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Postal Code</label>
-              <input name="postal_code" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Locality</label>
-              <input name="locality" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Sub Locality</label>
-              <input name="sublocality" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Country</label>
-              <input name="country" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Country Code</label>
-              <input name="country_short" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>State</label>
-              <input name="administrative_area_level_1" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Place ID</label>
-              <input name="place_id" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>ID</label>
-              <input name="id" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Reference</label>
-              <input name="reference" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>URL</label>
-              <input name="url" type="text" value="">
-            </div>
-
-            <div class="input-group">
-              <label>Website</label>
-              <input name="website" type="text" value="">
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-  </div>
     
+    <div class="ui page grid main">
+        <div class="row">
+            <div class="column padding-reset">
+                <div class="ui large message">
+                    <h1 class="ui huge header">Where should we look</h1>
+                    <p>Enter a location and let's find fellow Union students nearby.</p>
+                    <div align = 'center' class = 'map-container'>
+                        {{> googleMap name = 'map' options = mapOptions}}
+                    </div>
+                </div>
+            </div>
 
+        </div>
+    </div>
+    <div class="ui page centered grid main">
+        <div class="row">
+        <div class="ui form eight wide subscribe column">
+         <div class="field">    
+          <div class="ui action input">
+            <input placeholder="Enter a location...." type="text" id="location">
+            <div class="ui button">Let's take a look!</div>
+          </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    
 
 </template>

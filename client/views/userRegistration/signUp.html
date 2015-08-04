@@ -38,6 +38,10 @@
 				    </div>
 				</div>
 
+				<div class="field">
+		            <input type="text" name="place" id="location" placeholder="Where are you located this summer?">
+		        </div>
+
 				
 			    <div class="field">
 			      <div class="two fields">
@@ -59,7 +63,11 @@
 
 		        <div class="ui fluid large blue button" id='submitForm'>Get me started!</div>
 		</div>
+
     </form>
+		    	<div align = 'center' class = 'map-container'>
+		            {{> googleMap name = 'map' options = mapOptions}}
+		        </div>
 
   </div>
 
