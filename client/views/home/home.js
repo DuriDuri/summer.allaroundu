@@ -29,6 +29,26 @@ Template.home.onRendered(function() {
 
 
 Template.home.events({
+	'click #logout': function () {
+		console.log("Logging out");
+
+		// Analytics
+        analytics.track("User Logged Out", {
+          user: Meteor.call('getUsersFullName', Meteor.userId() ),
+        });
+
+		Meteor.logout();
+		Router.go('/logMeIn');
+	},
+
+
+	'click #searchButton' : function(){
+		// Analytics
+        analytics.track("User Logged Out", {
+          user: Meteor.call('getUsersFullName', Meteor.userId() ),
+          email: resetEmail,
+        });
+	}
 
 })
 

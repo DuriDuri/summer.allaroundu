@@ -1,4 +1,4 @@
-Template.signUp.events({
+Template.signMeUp.events({
   'click #submitForm': function(event, template) {
     	event.preventDefault();
     	console.log('Submit pressed');
@@ -16,13 +16,23 @@ Template.signUp.events({
 	        
 	        //Calculate the gps location
 	        var GPSlocation = $("#gps").text().replace(/^\(|\)$/,'').split(',');
-			// var LatLng = GPSlocation.replace("(", "").replace(")", "").split(", ")
-			// var Lat = parseFloat(LatLng[0]);
-			// var Lng = parseFloat(LatLng[1]);
+
+
+	        // Get Gravatar image
+	        var options = { 
+			    secure: false,
+			    size : 200,
+			    default : '404'
+			};  
+
+	        var url = Gravatar.imageUrl(email, options);
+			// https://secure.gravatar.com/avatar/5658ffccee7f0ebfda2b226238b1eb6e
+			
 
 	    
 	    	// Make the profile object
 	        var profile = {
+	        	ImageURL : url,
 	            FirstName : firstName,
 	            LastName : lastName,
 	            PhoneNumber : phoneNumber,
@@ -47,12 +57,18 @@ Template.signUp.events({
 	              console.log("Success. Account has been created and the user has logged in successfully.");
 	              // Inform the user with UI Kit to verify email
 	              //
+	              // Analytics  
+	              analytics.identify(Meteor.userId, {
+					  name: firstName + ' ' + lastName,
+					  email: email
+					});
+	              
 	              // Then reset form
 	              //
 	              $('#signUpForm').form('clear')
 
 	              //Route the user to the main page
-	              //Router.go();
+	              Router.go('/');
 	            }});
     	}
   	}
@@ -62,7 +78,7 @@ Template.signUp.events({
 
 
 
-Template.signUp.helpers({
+Template.signMeUp.helpers({
 	
 	// Map options
 	mapOptions: function() {
@@ -95,10 +111,15 @@ Template.signUp.helpers({
 				    ]
 				  }
 				]
-				            };
-				        }
-				    }
-				});
+            };
+        }
+    },
+    userGravatar : function(){
+		var gravatarURL = Meteor.user().profile.ImageURL;
+		if (gravatarURL.indexOf('default=404') > 1) return false;
+		else return gravatarURL;
+	}
+});
 
 
 
@@ -107,7 +128,7 @@ Template.signUp.helpers({
 
 
 
-Template.signUp.onRendered( function(){
+Template.signMeUp.onRendered( function(){
 	// Initialize dropdown
 	$('select.dropdown').dropdown();
 	

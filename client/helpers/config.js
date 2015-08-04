@@ -10,7 +10,7 @@ var doneCallback;
 
 Accounts.onResetPasswordLink(function(token, done) {
  // send back to /forgotPassword page
-  Router.go("/forgotmypassword");
+  Router.go("/forgotMyPassword");
 
   // Set a new session variable with the reset token from email
   Session.set('resetPassword', token);  
@@ -28,7 +28,7 @@ Accounts.onResetPasswordLink(function(token, done) {
 Accounts.onEmailVerificationLink(function(token, done){
 	//Marks verified as true
 	Accounts.verifyEmail(token);
-	Router.go("/home");
+	Router.go("/");
 });
 
 

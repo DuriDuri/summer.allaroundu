@@ -17,20 +17,20 @@ Accounts.onCreateUser(function(options, user){
 
 
 // // Only allow user's who have verified they're email address to login 
-Accounts.validateLoginAttempt(function(attempt){
+// Accounts.validateLoginAttempt(function(attempt){
   
 
-  if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
-    console.log('email not verified');
-    return false; // the login is aborted as they havent validated their profile
-  }
-  return true;
-}); 
+//   if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
+//     console.log('email not verified');
+//     return false; // the login is aborted as they havent validated their profile
+//   }
+//   return true;
+// }); 
 
 
 // Overarching Email template
 Accounts.emailTemplates.siteName = "summer.AllAroundU";
-Accounts.emailTemplates.from = "AllAroundU <admin@allaroundu.org>";
+Accounts.emailTemplates.from = "AllAroundU Support <support@allaroundu.org>";
 
 
 // Verify User Template
@@ -52,7 +52,7 @@ Accounts.emailTemplates.verifyEmail.text = function(user, url){
 
 // Reset Password Template
 Accounts.emailTemplates.resetPassword.from = function(){
-	return "Duri <admin@allaroundu.org>";
+	return "AllAroundU Support <support@allaroundu.org>";
 }
 
 Accounts.emailTemplates.resetPassword.subject = function(){
@@ -60,6 +60,25 @@ Accounts.emailTemplates.resetPassword.subject = function(){
 }
 
 Accounts.emailTemplates.resetPassword.text = function(user, url){
-	return "Hey " + user.profile.FirstName +"! \n \nHere to help! Simply log into the following link to get your password restarted. \n \n"
+	return "Hey " + user.profile.FirstName +"! \n \nHere to help! Simply log into the following link to get your password reset. \n \n"
 	 + url + "\n \n Cheers!";
 }
+
+
+
+/*
+	Meteor methods for user accounts
+ */
+
+Meteor.methods({
+
+	getUsersFullName: function(userID){
+			check(userID, String)
+
+			var user = Meteor.users.findOne({_id: userID});
+			var fullName = user.profile.FirstName + " " + user.profile.LastName;
+
+			return fullName;	
+		}
+
+});

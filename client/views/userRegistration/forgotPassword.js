@@ -1,4 +1,4 @@
-Template.forgotPassword.helpers({
+Template.forgotMyPassword.helpers({
  resetPassword: function(){
     return Session.get('resetPassword');
   }
@@ -6,7 +6,7 @@ Template.forgotPassword.helpers({
 
 
 
-Template.forgotPassword.events({
+Template.forgotMyPassword.events({
 	
   // Send reset email button pressed
   'click #sendResetEmail' : function(event){
@@ -15,7 +15,7 @@ Template.forgotPassword.events({
 		
     // Ensure the form was properly entered
 		if ( $('#requestPasswordResetForm').form('is valid') ) {
-        console.log("Entered if");
+        // console.log("Entered if");
         Accounts.forgotPassword({email : resetEmail}, function(err){
                   if (err){
                     if (err.message === "User not found [403]"){
@@ -29,7 +29,16 @@ Template.forgotPassword.events({
                   }
                   else{
                     console.log(" The email has been sent");
-                    // swal({   title: "Password reset!",   text: "Check your email for the reset link.",   timer: 2500,  type: "success", showConfirmButton: false });
+
+                    alert("Password reset email has been sent")
+
+                    // Analytics
+                    analytics.track("Password Reset Requested", {
+                      user: Meteor.userId(),
+                      email: resetEmail,
+                    });
+
+                    
                     $('#requestPasswordResetForm').form('clear');
                   }
         });
@@ -54,6 +63,12 @@ Template.forgotPassword.events({
                 //Reset toggle
                 Session.set('resetPassword', null);
                 
+                // Analytics
+                analytics.track("Password Successfully Reset", {
+                      user: Meteor.userId(),
+                      email: resetEmail,
+                    })
+
                 // Send user back to login
                 Router.go('/');
               }
@@ -69,7 +84,7 @@ Template.forgotPassword.events({
 
 
 
-Template.forgotPassword.onRendered( function(){
+Template.forgotMyPassword.onRendered( function(){
   // Reset Password Form Validation rules
   // 
   $('#resetPasswordForm').form({

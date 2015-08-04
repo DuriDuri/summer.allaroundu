@@ -1,4 +1,4 @@
-Template.login.events({
+Template.logMeIn.events({
 	'click #submitForm': function () {
 		// Pull information
 		var email = $("input[name='email']").val();
@@ -27,8 +27,14 @@ Template.login.events({
                 }
            	  }
               else{
+                // Analytics
+                analytics.identify(Meteor.userId, {
+                  name: firstName + ' ' + lastName,
+                  email: email
+                });
+
               	console.log(" The user has been logged in.");
-            		// Router.go('');
+            		Router.go('/');
             	}
             });
           
@@ -43,7 +49,7 @@ Template.login.events({
 
 
 
-Template.login.onRendered( function(){
+Template.logMeIn.onRendered( function(){
   //Validate that an actual password was entered
   // Form validation
   // 
