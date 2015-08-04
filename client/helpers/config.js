@@ -39,5 +39,13 @@ Accounts.onEmailVerificationLink(function(token, done){
 
 
 
+if (Meteor.isClient) {
+  Meteor.startup(function() {
+    GoogleMaps.load();
+  });
+
+}
+
+
 
 

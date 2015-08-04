@@ -14,3 +14,9 @@ momentjs:moment
 sewdn:masked-input
 semantic:ui
 flemay:less-autoprefixer
+jeremy:geocomplete
+dburles:google-maps
+mrt:googlemaps
+aldeed:autoform
+yogiben:autoform-map
+aldeed:simple-schema
