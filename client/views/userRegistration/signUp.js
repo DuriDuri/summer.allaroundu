@@ -14,15 +14,23 @@ Template.signUp.events({
 	        var lastName = $("input[name='lastName']").val();
 	        var phoneNumber = $("input[name='phoneNumber']").val().replace(/\D/g,'');
 	        
+	        //Calculate the gps location
+	        var GPSlocation = $("#gps").text().replace(/^\(|\)$/,'').split(',');
+			// var LatLng = GPSlocation.replace("(", "").replace(")", "").split(", ")
+			// var Lat = parseFloat(LatLng[0]);
+			// var Lng = parseFloat(LatLng[1]);
+
 	    
 	    	// Make the profile object
 	        var profile = {
 	            FirstName : firstName,
 	            LastName : lastName,
 	            PhoneNumber : phoneNumber,
-	            ClassYear : classYear
+	            ClassYear : classYear,
+	            location : GPSlocation
 	        };
 
+	        console.log(profile);
 	        // Create user and check errors
 	        Accounts.createUser({email: email, password : password, profile: profile}, function(err){
 	            if (err) {
@@ -185,18 +193,16 @@ Template.signUp.onRendered( function(){
 		// Wait for API to be loaded
 		if (GoogleMaps.loaded()) {
 
-        var options = {
-          map: ".map-container"
-        };
+        
 
-        // Example 2 - Autocomplete + map
-        $('#location').geocomplete(options)
-          .bind("geocode:result", function(event, result){
-            console.log("Result: " + result.geometry.location);
-          })
+	        // Example 2 - Autocomplete + map
+	        $('#location').geocomplete({
+	        	 map: ".map-container",
+	        	details: "ul",
+	          	detailsAttribute: "data-geo"
+	        });
 
-
-      }
+      	}
     });
 
 
