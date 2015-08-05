@@ -4,72 +4,10 @@ Template.signMeUp.events({
     	console.log('Submit pressed');
 
     	if( $('#signUpForm').form('is valid') ) {
-	        // Basic account details
-	        var email = $("input[name='email']").val();
-	        var password =  $("input[name='password']").val();
-
-	        //Set up profile details
-			var classYear = $("select[name='year']").val();
-	        var firstName = $("input[name='firstName']").val();
-	        var lastName = $("input[name='lastName']").val();
-	        var phoneNumber = $("input[name='phoneNumber']").val().replace(/\D/g,'');
-	        
-	        //Calculate the gps location
-	        var GPSlocation = $("#gps").text().replace(/^\(|\)$/,'').split(',');
-
-
-	        // Get Gravatar image
-	        var options = { 
-			    secure: false,
-			    size : 200,
-			    default : '404'
-			};  
-
-	        var url = Gravatar.imageUrl(email, options);
-			// https://secure.gravatar.com/avatar/5658ffccee7f0ebfda2b226238b1eb6e
-			
-
-	    
-	    	// Make the profile object
-	        var profile = {
-	        	ImageURL : url,
-	            FirstName : firstName,
-	            LastName : lastName,
-	            PhoneNumber : phoneNumber,
-	            ClassYear : classYear,
-	            location : GPSlocation
-	        };
-
-	        console.log(profile);
-	        // Create user and check errors
-	        Accounts.createUser({email: email, password : password, profile: profile}, function(err){
-	            if (err) {
-	            	if (err.message === 'Email already exists. [403]') {
-	              		return console.log('We are sorry but this email is already used.');
-	            	}
-	             	else {
-	              		return console.log("Inform the user that account creation failed" + err);
-	              	}
-	            }
-
-	            // No errors! yay!
-	            else {
-	              console.log("Success. Account has been created and the user has logged in successfully.");
-	              // Inform the user with UI Kit to verify email
-	              //
-	              // Analytics  
-	              analytics.identify(Meteor.userId, {
-					  name: firstName + ' ' + lastName,
-					  email: email
-					});
-	              
-	              // Then reset form
-	              //
-	              $('#signUpForm').form('clear')
-
-	              //Route the user to the main page
-	              Router.go('/');
-	            }});
+	        signUpUser();
+    	}
+    	else{
+    		return false;
     	}
   	}
 });
@@ -137,6 +75,7 @@ Template.signMeUp.onRendered( function(){
 
  	// Form validation
  	$('#signUpForm').form({
+ 		keyboardShortcuts : false,
 	  	inline : true,
 	  	fields: 
 	  		{
@@ -233,6 +172,75 @@ Template.signMeUp.onRendered( function(){
 });
 
 
+
+var signUpUser = function(){
+	// Basic account details
+    var email = $("input[name='email']").val();
+    var password =  $("input[name='password']").val();
+
+    //Set up profile details
+	var classYear = $("select[name='year']").val();
+    var firstName = $("input[name='firstName']").val();
+    var lastName = $("input[name='lastName']").val();
+    var phoneNumber = $("input[name='phoneNumber']").val().replace(/\D/g,'');
+    
+    //Calculate the gps location
+    var GPSlocation = $("#gps").text().replace(/^\(|\)$/,'').split(',');
+
+
+    // Get Gravatar image
+    var options = { 
+	    secure: false,
+	    size : 200,
+	    default : '404'
+	};  
+
+    var url = Gravatar.imageUrl(email, options);
+	// https://secure.gravatar.com/avatar/5658ffccee7f0ebfda2b226238b1eb6e
+	
+
+
+	// Make the profile object
+    var profile = {
+    	ImageURL : url,
+        FirstName : firstName,
+        LastName : lastName,
+        PhoneNumber : phoneNumber,
+        ClassYear : classYear,
+        location : GPSlocation
+    };
+
+    console.log(profile);
+    // Create user and check errors
+    Accounts.createUser({email: email, password : password, profile: profile}, function(err){
+        if (err) {
+        	if (err.message === 'Email already exists. [403]') {
+          		return console.log('We are sorry but this email is already used.');
+        	}
+         	else {
+          		return console.log("Inform the user that account creation failed" + err);
+          	}
+        }
+
+        // No errors! yay!
+        else {
+          console.log("Success. Account has been created and the user has logged in successfully.");
+          // Inform the user with UI Kit to verify email
+          //
+          // Analytics  
+          analytics.identify(Meteor.userId, {
+			  name: firstName + ' ' + lastName,
+			  email: email
+			});
+          
+          // Then reset form
+          //
+          $('#signUpForm').form('clear')
+
+          //Route the user to the main page
+          Router.go('/');
+        }});
+}
 
 
 

@@ -53,18 +53,24 @@
     <div class="ui page grid main">
         <div class="row">
             <div class="column padding-reset">
-                <div class="ui large message">
-                    <h1 class="ui huge header">Where should we look</h1>
+                <div class="ui attached large message">
+                    <div class="header">
+                        <h1 class="ui huge header">Where should we look?</h1>
+                    </div>
                     <p>Enter a location and let's find fellow Union students nearby.</p>
+                    <div class="ui action fluid input">
+                        <input placeholder="Enter a location...." type="text" id="location">
+                        <div class="ui button" id="searchButton">Let's take a look!</div>
+                    </div>
+                    <br />
                     <div align = 'center' class = 'map-container'>
                         {{> googleMap name = 'map' options = mapOptions}}
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="ui page centered grid main">
+<!--     <div class="ui page centered grid main">
         <div class="row">
         <div class="ui form eight wide subscribe column">
          <div class="field">    
@@ -75,6 +81,22 @@
               </div>
           </div>
       </div>
+    </div> -->
+    <div class="ui hidden divider"></div>
+      <div class="ui page grid">
+      
+
+
+
+      <!--  Secondary content -->
+
+
+        <div class="row">
+            <div class="right floated column footer ">
+                <div class="ui divider"></div>  
+                <span>&copy; AllAroundU 2015</span>
+            </div>
+        </div>
     </div>
     
 

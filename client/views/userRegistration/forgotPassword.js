@@ -88,6 +88,7 @@ Template.forgotMyPassword.onRendered( function(){
   // Reset Password Form Validation rules
   // 
   $('#resetPasswordForm').form({
+    keyboardShortcuts : false,
     inline : true,
     // on     : 'blur',
     fields: {

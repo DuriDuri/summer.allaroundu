@@ -1,17 +1,17 @@
 <template name="signMeUp">
 
 
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui blue image header">
-      <img src="logo.png" class="image">
+
+    
+    
+    <div class="ui raised segment modal_body">
+    <h2 class="ui yellow image header">
+      <img src="img/logo.png" class="image">
       <div class="content">
         Let's get you started
       </div>
     </h2>
-    
     <form class="ui large form" id='signUpForm'>
-      	<div class="ui stacked segment">
 		        
 		        <div class="field">
 		          <div class="ui left icon input">
@@ -59,20 +59,18 @@
 			        </div>
 			       </div>
 			    </div>
-			    
-
-		        <div class="ui fluid large blue button" id='submitForm'>Get me started!</div>
-		</div>
-
+			   
+		        <div class="ui fluid large basic yellow button" id='submitForm'>Get me started!</div>
     </form>
-		    	<div align = 'center' class = 'map-container'>
-		            {{> googleMap name = 'map' options = mapOptions}}
-		        </div>
 
-  </div>
+    <br />
+    
+    	<div align = 'center' class = 'map-container'>
+            {{> googleMap name = 'map' options = mapOptions}}
+		</div>
+    </div>
+		    	
 
-
-</div>
 <ul>
         <li>Location: <span data-geo="location" id="gps"></span></li>
 

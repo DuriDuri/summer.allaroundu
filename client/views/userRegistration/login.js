@@ -7,38 +7,8 @@ Template.logMeIn.events({
 
 
 		//Validate
-		if( $('#loginForm').form('is valid') ) {
-			//login user
-			Meteor.loginWithPassword(email, password, function(err){
-              if (err){
-                
-                // if error is incorrect password
-                if (err.message === "Incorrect password [403]") {
-                    // $('#loginForm').form('add prompt', 'loginPassword', 'Incorrect password.');
-                    return;
-                }
-                else if (err.message === "User not found [403]"){
-                    // $('#loginForm').form('add prompt', 'loginEmail', "We don't recognize that email address. Are you sure you've signed up?");
-                    return;
-                }
-                else{
-                  console.log(err);
-                  return;
-                }
-           	  }
-              else{
-                // Analytics
-                analytics.identify(Meteor.userId, {
-                  name: firstName + ' ' + lastName,
-                  email: email
-                });
-
-              	console.log(" The user has been logged in.");
-            		Router.go('/');
-            	}
-            });
-          
-        }
+		if( $('#loginForm').form('is valid') ) logUserIn();
+    else return false;
 	}
 });
 
@@ -54,6 +24,7 @@ Template.logMeIn.onRendered( function(){
   // Form validation
   // 
   $('#loginForm').form({
+    keyboardShortcuts : false,
     inline : true,
     // on     : 'blur',
     fields: {
@@ -83,3 +54,37 @@ Template.logMeIn.onRendered( function(){
   });
 
 });
+
+
+var logUserIn = function(){
+  //login user
+  Meteor.loginWithPassword(email, password, function(err){
+          if (err){
+            
+            // if error is incorrect password
+            if (err.message === "Incorrect password [403]") {
+                // $('#loginForm').form('add prompt', 'loginPassword', 'Incorrect password.');
+                return;
+            }
+            else if (err.message === "User not found [403]"){
+                // $('#loginForm').form('add prompt', 'loginEmail', "We don't recognize that email address. Are you sure you've signed up?");
+                return;
+            }
+            else{
+              console.log(err);
+              return;
+            }
+          }
+          else{
+            // Analytics
+            analytics.identify(Meteor.userId, {
+              name: firstName + ' ' + lastName,
+              email: email
+            });
+
+            console.log(" The user has been logged in.");
+            Router.go('/');
+          }
+        });
+
+}

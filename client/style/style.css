@@ -1,9 +1,4 @@
-body {
-      background: linear-gradient(45deg, 
-        rgba(14,21,58,1) 0%,
-        rgba(115,107,147,1) 48%,
-        rgba(243,201,215,1) 100%);
-    }
+
 
     .image {
       margin-top: -100px;
@@ -25,9 +20,15 @@ body {
 }
 
 body{
-  font-family: 'Open Sans', sans-serif;
-  margin-bottom: 60px;
+  background-color: #891A1F;
+  font-family: AvenirLTStd-Black, "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+  line-height: 1.5em;
+  position: relative;
+  -webkit-transition: background-color 0.6s ease-in-out 0s;
+  transition: background-color 0.6s ease-in-out 0s 
 }
+
+
 
 .ui.grid.main{
   margin-top: 30px;
@@ -60,4 +61,27 @@ body{
   margin-top: -15px !important;
   width: 100%;
   display: none;
+}
+
+.footer{
+  color: #f8f8f9;
+}
+
+/*
+  User registration process layout
+ */
+
+.centered_static_modal_wrap{
+  position: relative;
+  top : 5%;
+  text-align: center;
+  max-width: 450px;
+  margin: 0 auto 0 auto;
+}
+
+.ui.segment.modal_body{
+  margin-left: .5em;
+  margin-right: .5em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
