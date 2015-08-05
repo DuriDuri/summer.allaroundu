@@ -6,7 +6,7 @@
             <div class="ui fixed menu navbar page grid">
                 <a href="" class="brand item">summer.AllAroundU</a>
                 <a href="#" class="active item">Home</a>
-                <a href="" class="item">About</a>
+                <a href="mailto:durid@union.edu?Subject=RE:User:%20{{currentUser.profile.FirstName}}-summer.AllAroundU%20" class="item">Contact</a>
                 {{#if currentUser}}
                 <div class="right menu">
                     <a href="" class="item" id="logout">Logout</a>
@@ -53,7 +53,7 @@
     <div class="ui page grid main">
         <div class="row">
             <div class="column padding-reset">
-                <div class="ui attached large message">
+                <div class="ui attached red large message">
                     <div class="header">
                         <h1 class="ui huge header">Where should we look?</h1>
                     </div>
@@ -63,8 +63,8 @@
                         <div class="ui button" id="searchButton">Let's take a look!</div>
                     </div>
                     <br />
-                    <div align = 'center' class = 'map-container'>
-                        {{> googleMap name = 'map' options = mapOptions}}
+                    <div align = 'center' class = 'map-container' id="homeMap">
+                        {{> googleMap name = 'map'}}
                     </div>
                 </div>
             </div>
@@ -94,7 +94,8 @@
         <div class="row">
             <div class="right floated column footer ">
                 <div class="ui divider"></div>  
-                <span>&copy; AllAroundU 2015</span>
+                <p align="right">Extension of <a href="http://allaroundu.org">AllAroundU</a>, by <a href="https://twitter.com/_DuriDuri">@DuriDuri</a>.</p>
+                <p align="right">&copy; AllAroundU 2015</p>
             </div>
         </div>
     </div>

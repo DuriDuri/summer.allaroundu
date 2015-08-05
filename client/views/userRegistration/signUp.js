@@ -157,7 +157,7 @@ Template.signMeUp.onRendered( function(){
 
 	        // Example 2 - Autocomplete + map
 	        $('#location').geocomplete({
-	        	 map: ".map-container",
+	        	map: ".map-container",
 	        	details: "ul",
 	          	detailsAttribute: "data-geo"
 	        });

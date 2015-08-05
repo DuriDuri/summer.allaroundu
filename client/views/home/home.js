@@ -3,20 +3,31 @@
 
 Template.home.onRendered(function() {
 
+
 	// Initiate geocomplete autorun
 	this.autorun(function () {
 		// Wait for API to be loaded
 		if (GoogleMaps.loaded()) {
 
-        var options = {
-          map: ".map-container"
-        };
+    //     var options = {
+    //       map: ".map-container",
+    //       mapOptions: {
+		  //   zoom: 19
+		  // }
+    //     };
 
         // Example 2 - Autocomplete + map
-        $('#location').geocomplete(options)
-          .bind("geocode:result", function(event, result){
-            console.log("Result: " + result.geometry.location);
-          })
+        $('#location').geocomplete({
+		  map: "#homeMap",
+		  mapOptions: {
+		    zoom: 1
+		  },
+		  markerOptions: {
+		    draggable: true
+		  },
+		  details: "#location"
+		})
+          
 
 
       }
@@ -29,7 +40,8 @@ Template.home.onRendered(function() {
 
 
 Template.home.events({
-	'click #logout': function () {
+	'click #logout': function (event) {
+		event.preventDefault();
 		console.log("Logging out");
 
 		// Analytics
@@ -42,12 +54,11 @@ Template.home.events({
 	},
 
 
-	'click #searchButton' : function(){
-		// Analytics
-        analytics.track("User Logged Out", {
-          user: Meteor.call('getUsersFullName', Meteor.userId() ),
-          email: resetEmail,
-        });
+	'click #searchButton' : function(event){
+		event.preventDefault();
+		$('#location').trigger("geocode");
+
+
 	}
 
 })

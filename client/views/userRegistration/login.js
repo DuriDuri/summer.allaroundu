@@ -1,13 +1,16 @@
 Template.logMeIn.events({
-	'click #submitForm': function () {
-		// Pull information
+	'click #submitForm': function (event) {
+		
+   event.preventDefault();
+
+    // Pull information
 		var email = $("input[name='email']").val();
 		var password = $("input[name='password']").val();
 		// console.log("email" + email + " password" + password);
 
 
 		//Validate
-		if( $('#loginForm').form('is valid') ) logUserIn();
+		if( $('#loginForm').form('is valid') ) logUserIn(email, password);
     else return false;
 	}
 });
@@ -56,18 +59,18 @@ Template.logMeIn.onRendered( function(){
 });
 
 
-var logUserIn = function(){
+var logUserIn = function(email, password){
   //login user
   Meteor.loginWithPassword(email, password, function(err){
           if (err){
             
             // if error is incorrect password
-            if (err.message === "Incorrect password [403]") {
-                // $('#loginForm').form('add prompt', 'loginPassword', 'Incorrect password.');
+            if (err.message === "Incorrect password [403]") {             
+                $('#loginForm').form('add prompt', 'password', 'Incorrect password.');
                 return;
             }
             else if (err.message === "User not found [403]"){
-                // $('#loginForm').form('add prompt', 'loginEmail', "We don't recognize that email address. Are you sure you've signed up?");
+                $('#loginForm').form('add prompt', 'email', "We don't recognize that email address. Are you sure you've signed up?");
                 return;
             }
             else{
@@ -78,7 +81,7 @@ var logUserIn = function(){
           else{
             // Analytics
             analytics.identify(Meteor.userId, {
-              name: firstName + ' ' + lastName,
+              name: Meteor.user().profile.FirstName + ' ' + Meteor.user().profile.LastName,
               email: email
             });
 
@@ -86,5 +89,6 @@ var logUserIn = function(){
             Router.go('/');
           }
         });
+  return false;
 
 }
