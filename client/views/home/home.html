@@ -53,18 +53,18 @@
     <div class="ui page grid main">
         <div class="row">
             <div class="column padding-reset">
-                <div class="ui attached red large message">
+                <div class="ui attached red huge message">
                     <div class="header">
                         <h1 class="ui huge header">Where should we look?</h1>
                     </div>
                     <p>Enter a location and let's find fellow Union students nearby.</p>
                     <div class="ui action fluid input">
                         <input placeholder="Enter a location...." type="text" id="location">
-                        <div class="ui button" id="searchButton">Let's take a look!</div>
+                        <div class="ui red button" id="searchButton">Let's take a look!</div>
                     </div>
                     <br />
                     <div align = 'center' class = 'map-container' id="homeMap">
-                        {{> googleMap name = 'map'}}
+                        {{> googleMap name = 'map' options = mapOptions}}
                     </div>
                 </div>
             </div>
