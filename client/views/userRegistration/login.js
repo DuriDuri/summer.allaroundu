@@ -97,6 +97,13 @@ var logUserIn = function(email, password){
             Router.go('/');
           }
         });
+
+  // Analytics
+  analytics.identify( Meteor.user()._id, {
+      name: Meteor.user().profile.FirstName + " " + Meteor.user().profile.LastName,
+      email: Meteor.user().emails[0].address,
+      phone : Meteor.user().profile.PhoneNumber
+  });
   return false;
 
 }

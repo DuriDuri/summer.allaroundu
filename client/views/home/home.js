@@ -18,7 +18,7 @@ Template.home.onRendered(function() {
                     id: document._id,
                 });
 
-                var userDetails = "<a class='ui blue image label'> <img src='/img/matthew.jpg'>" + user.profile.FirstName + " " + user.profile.LastName+" <div class='detail'>" + user.profile.ClassYear + " </div></a>"
+                var userDetails = "<a class='ui blue image label' href='mailto:"+user.emails[0].address+"' > <img src='/img/matthew.jpg'>" + user.profile.FirstName + " " + user.profile.LastName+" <div class='detail'>" + user.profile.ClassYear + " </div></a>"
                 var infoWindow = new google.maps.InfoWindow({
                     content: userDetails
                 });

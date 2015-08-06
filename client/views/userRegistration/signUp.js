@@ -1,3 +1,27 @@
+// Geolocation
+// 
+geoSuccess = function (position) {
+  lat = position.coords.latitude.toString();
+  lng = position.coords.longitude.toString();
+
+  //Set the session var
+  Session.set('location', [lat, lng]);
+  // console.log("Success" + lat + " " + lng);
+};
+
+geoFailure = function (){
+  var geolocation = {
+    time: new Date(),
+    lat: null,
+    lng: null
+  };
+  //Set the session var
+  Session.set('location', null);
+  // console.log('Geolocation failure to acquire');
+};
+
+
+
 Template.signMeUp.events({
   'click #submitForm': function(event, template) {
     	event.preventDefault();
@@ -75,6 +99,12 @@ Template.signMeUp.helpers({
 
 
 Template.signMeUp.onRendered( function(){
+	
+
+
+	// Get GPS Coordinates
+	navigator.geolocation.getCurrentPosition(geoSuccess, geoFailure);
+
 	// Initialize dropdown
 	$('select.dropdown').dropdown();
 	
@@ -88,14 +118,22 @@ Template.signMeUp.onRendered( function(){
 	  	fields: 
 	  		{
 		  	    name: {
-		  	        identifier  : 'email',
-		  	        rules: [
-		  	          {
-		  	            type   : 'email',
-		  	            prompt : 'Please enter your email address'
-		  	          }
-		  	        	]
-					},
+	  	        identifier  : 'email',
+			  	  rules: [
+		          {
+			            type   : 'empty',
+			            prompt : 'Please enter your email address'
+			          },
+			          {
+			            type   : 'email',
+			            prompt : 'Please enter an actual email address'
+			          },
+			          {
+			            type   : 'contains[@union.edu]',
+			            prompt : 'Sorry, we only like Union College affiliates'
+			          }
+			        ]
+			      },
 		  	    password: {
 		  	        identifier : 'password',
 		  	        rules: [
@@ -116,8 +154,12 @@ Template.signMeUp.onRendered( function(){
 		  	          {
 		  	            type   : 'empty',
 		  	            prompt : 'Please enter your first name'
-		  	          }
-		  	        ]
+		  	          },
+			          {
+			            type   : 'minLength[2]',
+			            prompt : "C'Mon, we're both better than that"
+			          }
+			        ]
 		  	      },
 		  	    
 		  	    lastName: {
@@ -145,7 +187,7 @@ Template.signMeUp.onRendered( function(){
 		  	        rules: [
 		  	          {
 		  	            type   : 'empty',
-		  	            prompt : 'Please enter your graduation year'
+		  	            prompt : "Don't you expect to graduate?"
 		  	          }
 	        		]
 	     		}
@@ -193,7 +235,9 @@ var signUpUser = function(){
     var phoneNumber = $("input[name='phoneNumber']").val().replace(/\D/g,'');
     
     //Calculate the gps location
-    var GPSlocation = $("#gps").text().replace(/^\(|\)$/,'').split(',');
+    //
+  	if(Session.get("location")) var GPSlocation = Session.get("location");
+    else var GPSlocation = $("#gps").text().replace(/^\(|\)$/,'').split(',');
 
 
     // Get Gravatar image
@@ -217,6 +261,8 @@ var signUpUser = function(){
         ClassYear : classYear,
         location : GPSlocation
     };
+
+
 
     console.log(profile);
     // Create user and check errors
@@ -247,11 +293,7 @@ var signUpUser = function(){
           swal("You're all signed up!",   "Make sure to check your email to verify your account",   'success' );
           
 
-          // Analytics  
-          analytics.identify(Meteor.userId, {
-			  name: firstName + ' ' + lastName,
-			  email: email
-			});
+         
           
           // Then reset form
           //
