@@ -5,7 +5,10 @@
      
         <div class="computer tablet only row">
             <div class="ui fixed menu navbar page grid">
-                <a href="" class="brand item">summer.AllAroundU</a>
+                <div class="item">
+                    <img src="/img/logo.png">
+                   summer.AllAroundU
+                </div>
                 <a href="#" class="active item">Home</a>
                 <a href="mailto:durid@union.edu?Subject=RE:User:%20{{currentUser.profile.FirstName}}-summer.AllAroundU%20" class="item">Contact</a>
                 {{#if currentUser}}
@@ -52,15 +55,15 @@
     <div class="ui page grid main">
         <div class="row">
             <div class="column padding-reset">
-                <div class="ui attached red huge message">
+                <div class="ui attached allaroundu huge message">
                     <div class="header">
-                        <h1 class="ui huge header">Where should we look?</h1>
+                        <h1 class="ui huge allaroundu header">Where should we look?</h1>
                     </div>
-                    <p>Enter a location and let's find fellow Union students nearby.</p>
-                    <div class="ui action fluid input">
+                    <p>Heading somewhere this weekend?<br /> Scroll through to find Union students who may be in the area.</p>
+                    <!-- <div class="ui action fluid input">
                         <input placeholder="Enter a location...." type="text" id="location">
                         <div class="ui red button" id="searchButton">Let's take a look!</div>
-                    </div>
+                    </div> -->
                     <br />
                     <div align = 'center' class = 'map-container' id="homeMap">
                         {{> googleMap name = 'map' options = mapOptions}}

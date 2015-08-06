@@ -38,24 +38,24 @@ Template.home.onRendered(function() {
 	// 	// Wait for API to be loaded
 	// 	if (GoogleMaps.loaded()) {
 
- //    //     var options = {
- //    //       map: ".map-container",
- //    //       mapOptions: {
-	// 	  //   zoom: 19
-	// 	  // }
- //    //     };
+ //        var options = {
+ //          map: ".map-container",
+ //          mapOptions: {
+	// 	    zoom: 19
+	// 	  }
+ //        };
 
  //        // Example 2 - Autocomplete + map
  //        $('#location').geocomplete({
-	// 	  map: "#homeMap",
+	// 	  map: ".map-container",
 	// 	  mapOptions: {
 	// 	    zoom: 1
 	// 	  },
 	// 	  markerOptions: {
 	// 	    draggable: true
-	// 	  },
-	// 	  details: "#location"
-	// 	})
+	// 	  }
+		 
+	// 	});
           
 
 
