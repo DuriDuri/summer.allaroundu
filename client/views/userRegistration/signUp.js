@@ -227,6 +227,11 @@ var signUpUser = function(){
           		return console.log('We are sorry but this email is already used.');
 
         	}
+        	else if(err.message == "Login forbidden [403]"){
+        		// Inform the user to verify email
+          		swal("You're all signed up!",   "Make sure to check your email to verify your account",   'success' );
+
+        	}
          	else {
           		$('#signUpForm').form('add prompt', 'email', 'Something went wrong! Try refreshing the page'); 
           		return console.log("Inform the user that account creation failed" + err);
@@ -236,9 +241,12 @@ var signUpUser = function(){
         // No errors! yay!
         else {
           console.log("Success. Account has been created and the user has logged in successfully.");
-          sAlert.success('Your account has been created! Check your email to verify your email address', {effect: 'your-effect-name-here'});
+         
+          
           // Inform the user with UI Kit to verify email
-          //
+          swal("You're all signed up!",   "Make sure to check your email to verify your account",   'success' );
+          
+
           // Analytics  
           analytics.identify(Meteor.userId, {
 			  name: firstName + ' ' + lastName,
@@ -250,7 +258,7 @@ var signUpUser = function(){
           $('#signUpForm').form('clear')
 
           //Route the user to the main page
-          Router.go('/');
+			// Router.go('/');
         }});
 }
 

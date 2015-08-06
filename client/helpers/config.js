@@ -43,16 +43,7 @@ if (Meteor.isClient) {
   Meteor.startup(function() {
     GoogleMaps.load();
 
-    // Alerts config 
-    sAlert.config({
-        effect: '',
-        position: 'top',
-        timeout: 5000,
-        html: false,
-        onRouteClose: true,
-        stack: true,
-        offset: 0
-    });
+    
   });
 
 }

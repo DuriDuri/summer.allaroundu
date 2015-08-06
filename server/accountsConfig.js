@@ -17,15 +17,15 @@ Accounts.onCreateUser(function(options, user){
 
 
 // // Only allow user's who have verified they're email address to login 
-// Accounts.validateLoginAttempt(function(attempt){
+Accounts.validateLoginAttempt(function(attempt){
   
 
-//   if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
-//     console.log('email not verified');
-//     return false; // the login is aborted as they havent validated their profile
-//   }
-//   return true;
-// }); 
+  if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
+    console.log('Please verify your email address');
+    return false; // the login is aborted as they havent validated their profile
+  }
+  return true;
+}); 
 
 
 // Overarching Email template
@@ -35,7 +35,7 @@ Accounts.emailTemplates.from = "AllAroundU Support <support@allaroundu.org>";
 
 // Verify User Template
 Accounts.emailTemplates.verifyEmail.from = function(){
-	return "AllAroundU Support <support@allaroundu.org>";
+	return "AllAroundU <support@allaroundu.org>";
 }
 
 Accounts.emailTemplates.verifyEmail.subject = function(){
