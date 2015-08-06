@@ -35,7 +35,7 @@ Accounts.emailTemplates.from = "AllAroundU Support <support@allaroundu.org>";
 
 // Verify User Template
 Accounts.emailTemplates.verifyEmail.from = function(){
-	return "AllAroundU <admin@allaroundu.org>";
+	return "AllAroundU Support <support@allaroundu.org>";
 }
 
 Accounts.emailTemplates.verifyEmail.subject = function(){

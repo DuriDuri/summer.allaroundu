@@ -9,7 +9,15 @@ Template.signMeUp.events({
     	else{
     		return false;
     	}
-  	}
+  	},
+
+  	'click #forgotPasswordLink': function(event) {
+        Router.go('/forgotMyPassword');
+    }, 
+  
+    'click #logInLink': function(event) {
+        Router.go('/logMeIn');
+    }
 });
 
 
@@ -192,7 +200,7 @@ var signUpUser = function(){
     var options = { 
 	    secure: false,
 	    size : 200,
-	    default : '404'
+	    default : 'mm'
 	};  
 
     var url = Gravatar.imageUrl(email, options);
@@ -215,9 +223,12 @@ var signUpUser = function(){
     Accounts.createUser({email: email, password : password, profile: profile}, function(err){
         if (err) {
         	if (err.message === 'Email already exists. [403]') {
+          		$('#signUpForm').form('add prompt', 'email', 'We both know that email address has already been registerd. Try reseting your password'); 
           		return console.log('We are sorry but this email is already used.');
+
         	}
          	else {
+          		$('#signUpForm').form('add prompt', 'email', 'Something went wrong! Try refreshing the page'); 
           		return console.log("Inform the user that account creation failed" + err);
           	}
         }
@@ -225,6 +236,7 @@ var signUpUser = function(){
         // No errors! yay!
         else {
           console.log("Success. Account has been created and the user has logged in successfully.");
+          sAlert.success('Your account has been created! Check your email to verify your email address', {effect: 'your-effect-name-here'});
           // Inform the user with UI Kit to verify email
           //
           // Analytics  

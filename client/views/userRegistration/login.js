@@ -12,7 +12,15 @@ Template.logMeIn.events({
 		//Validate
 		if( $('#loginForm').form('is valid') ) logUserIn(email, password);
     else return false;
-	}
+	},
+  
+  'click #forgotPasswordLink': function(event) {
+        Router.go('/forgotMyPassword');
+    }, 
+  
+    'click #signUpLink': function(event) {
+        Router.go('/signMeUp');
+    }
 });
 
 

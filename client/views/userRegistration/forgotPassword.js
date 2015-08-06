@@ -45,6 +45,14 @@ Template.forgotMyPassword.events({
     }
 	},
 
+  'click #logInLink': function(event) {
+      Router.go('/logMeIn');
+  }, 
+  
+  'click #signUpLink': function(event) {
+      Router.go('/signMeUp');
+    },
+
 
   // Reset with new password button pressed
 	'click #resetPassword' : function(event) {

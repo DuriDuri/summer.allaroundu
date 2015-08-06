@@ -2,6 +2,7 @@
 
 
     <div class="ui grid">
+     {{> sAlert}}
         <div class="computer tablet only row">
             <div class="ui fixed menu navbar page grid">
                 <a href="" class="brand item">summer.AllAroundU</a>
@@ -13,11 +14,9 @@
                 </div>
                 <div class="ui horizontal list">
                   <div class="item">
-                    {{#if userGravatar}}
                         <img class="ui avatar image" src="{{userGravatar}}">
-                    {{else}}
-                        <img class="ui avatar image" src="/img/matthew.jpg">
-                    {{/if}}
+                    
+                
                     <div class="content">
                       <div class="header"></div>
                       {{profile.FirstName}}

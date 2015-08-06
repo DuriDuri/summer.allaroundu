@@ -2,10 +2,10 @@
 
 
 
-    
+    {{> sAlert}}
     
     <div class="ui raised segment modal_body">
-    <h2 class="ui yellow image header">
+    <h2 class="ui allaroundu image header">
       <img src="img/logo.png" class="image">
       <div class="content">
         Let's get you started
@@ -61,6 +61,11 @@
 			    </div>
 			   
 		        <div class="ui fluid large basic yellow button" id='submitForm'>Get me started!</div>
+
+		        <div class = 'two mini ui buttons'> <!-- class="inline field" align='left' -->
+		            <button class = 'ui button' id ='logInLink'>Log Me In</button>
+		            <button class = 'ui button' id ='forgotPasswordLink'>Forgot Password</button>
+		        </div>
     </form>
 
     <br />
@@ -68,6 +73,9 @@
     	<div align = 'center' class = 'map-container'>
             {{> googleMap name = 'map' options = mapOptions}}
 		</div>
+
+		
+
     </div>
 		    	
 
