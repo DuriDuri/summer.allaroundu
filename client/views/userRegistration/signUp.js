@@ -225,7 +225,7 @@ Template.signMeUp.onRendered( function(){
 
 var signUpUser = function(){
 	// Basic account details
-    var email = $("input[name='email']").val();
+    var email = $("input[name='email']").val().toLowerCase();
     var password =  $("input[name='password']").val();
 
     //Set up profile details

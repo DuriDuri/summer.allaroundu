@@ -4,7 +4,7 @@ Template.logMeIn.events({
    event.preventDefault();
 
     // Pull information
-		var email = $("input[name='email']").val();
+		var email = $("input[name='email']").val().toLowerCase();
 		var password = $("input[name='password']").val();
 		// console.log("email" + email + " password" + password);
 
