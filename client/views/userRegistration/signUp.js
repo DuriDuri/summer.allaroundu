@@ -275,7 +275,7 @@ var signUpUser = function(){
         	}
         	else if(err.message == "Login forbidden [403]"){
         		// Inform the user to verify email
-          		swal("You're all signed up!",   "Make sure to check your email to verify your account",   'success' );
+          		swal("Check your email!",   "You're all signed up! Make sure to check your email to verify your account",   'success' );
 
         	}
          	else {
@@ -290,7 +290,7 @@ var signUpUser = function(){
          
           
           // Inform the user with UI Kit to verify email
-          swal("You're all signed up!",   "Make sure to check your email to verify your account",   'success' );
+          swal("Check your email!",   "You're all signed up! Make sure to check your email to verify your account",   'success' );
           
 
          

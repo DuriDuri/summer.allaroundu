@@ -7,7 +7,7 @@ Template.home.onRendered(function() {
 
     
     GoogleMaps.ready('map', function(map) {
-        Meteor.users.find({}).forEach(function(user) {
+        Meteor.users.find({'emails.verified' : true}).forEach(function(user) {
             if (user.profile.location != null) {
                 var marker = new google.maps.Marker({
                     draggable: false,
