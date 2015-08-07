@@ -1,5 +1,10 @@
 <template name="home">
-
+    <head>
+      <title>Summer.AllAroundU</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=0" />
+      <!-- <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon"> -->
+      <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+    </head>
 
     <div class="ui grid">
      
@@ -12,40 +17,32 @@
                 {{#if currentUser}}
                 <div class="right menu">
                     <a href="" class="item" id="logout">Logout</a>
-                </div>
-
-    
-                <div class="ui large horizontal divided list">
-                    <div class="item">
-                        <img class="ui avatar image" src="{{userGravatar}}">
-                        <div class="content">
-                          <div class="header">{{profile.FirstName}}</div>
+                    <a class="item">
+                    <div class="ui large horizontal divided list">
+                        <div class="item">
+                            <img class="ui avatar image" src="{{userGravatar}}">
+                            <div class="content">
+                              <div class="header">{{profile.FirstName}}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    </a>
+                </div>          
                 {{/if}}
             </div>
         </div>
 
         <div class="mobile only row">
-            <div class="ui fixed inverted navbar menu">
-                <a href="" class="brand item">summer AllAroundU</a>
+            <div class="ui fixed  navbar menu">
+                <a href="#" class="item"><img src="/img/logo.png">
+                Home</a>
+                <a href="mailto:durid@union.edu?Subject=RE:User:%20{{currentUser.profile.FirstName}}-summer.AllAroundU%20" class="item">Contact Us</a>
                 <div class="right menu open">
-                    <a href="" class="menu item">
-                        <i class="reorder icon"></i>
-                    </a>
+                    {{#if currentUser}}
+                    <a href="" class="item" id="logout">Logout</a>
+                    {{/if}}
                 </div>
-            </div>
-            <div class="ui vertical navbar menu">
-                <a href="" class="active item">Home</a>
-                <a href="" class="item">About</a>
-                {{#if currentUser}}
-                <div class="menu">
-
-                    <a href="" class="item">Logout</a>
-                </div>
-                {{/if}}
-            </div>
+            </div>  
         </div>
     </div>
     
@@ -54,9 +51,9 @@
             <div class="column padding-reset">
                 <div class="ui attached allaroundu huge message">
                     <div class="header">
-                        <h1 class="ui huge allaroundu header">Where should we look?</h1>
+                        <h1 class="ui huge allaroundu header">Where are U?</h1>
                     </div>
-                    <p>Heading somewhere this weekend?<br /> Scroll through to find Union students who may be in the area.</p>
+                    <p>Find union students who may be in the area</p>
                     <!-- <div class="ui action fluid input">
                         <input placeholder="Enter a location...." type="text" id="location">
                         <div class="ui red button" id="searchButton">Let's take a look!</div>
