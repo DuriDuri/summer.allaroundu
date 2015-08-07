@@ -108,6 +108,7 @@ Template.home.helpers({
                 draggable: true,
                 scrollwheel: true,
                 zoom: 4,
+                minZoom: 4,
                 backgroundColor: 'rgb(255,255,255)',
                 color: 'rgb(255,255,255)',
                 styles : 
