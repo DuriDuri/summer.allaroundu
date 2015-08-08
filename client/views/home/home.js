@@ -2,7 +2,7 @@
 
 
 Template.home.onRendered(function() {
-
+	console.log("Hey there! Like looking under the hood? - send me an email at durid@union.edu and let's talk about upcoming projects");
 	GoogleMaps.load();
 
     

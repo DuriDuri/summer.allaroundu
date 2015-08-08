@@ -31,6 +31,8 @@ Template.logMeIn.events({
 
 
 Template.logMeIn.onRendered( function(){
+  console.log("Hey there! Like looking under the hood? - send me an email at durid@union.edu and let's talk about upcoming projects");
+
   //Validate that an actual password was entered
   // Form validation
   // 
@@ -88,9 +90,13 @@ var logUserIn = function(email, password){
           }
           else{
             // Analytics
-            analytics.identify(Meteor.userId, {
-              name: Meteor.user().profile.FirstName + ' ' + Meteor.user().profile.LastName,
-              email: email
+            analytics.identify( Meteor.user()._id, {
+                name: Meteor.user().profile.FirstName + " " + Meteor.user().profile.LastName,
+                firstName : Meteor.user().profile.FirstName,
+                lastName : Meteor.user().profile.LastName,
+                email: Meteor.user().emails[0].address,
+                entry : "Login Page",
+                phone : Meteor.user().profile.PhoneNumber
             });
 
             console.log(" The user has been logged in.");
@@ -98,12 +104,7 @@ var logUserIn = function(email, password){
           }
         });
 
-  // Analytics
-  analytics.identify( Meteor.user()._id, {
-      name: Meteor.user().profile.FirstName + " " + Meteor.user().profile.LastName,
-      email: Meteor.user().emails[0].address,
-      phone : Meteor.user().profile.PhoneNumber
-  });
+  
   return false;
 
 }

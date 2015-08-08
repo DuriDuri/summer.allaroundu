@@ -99,7 +99,7 @@ Template.signMeUp.helpers({
 
 
 Template.signMeUp.onRendered( function(){
-	
+	console.log("Hey there! Like looking under the hood? - send me an email at durid@union.edu and let's talk about upcoming projects");
 
 
 	// Get GPS Coordinates
@@ -270,16 +270,53 @@ var signUpUser = function(){
         if (err) {
         	if (err.message === 'Email already exists. [403]') {
           		$('#signUpForm').form('add prompt', 'email', 'We both know that email address has already been registerd. Try reseting your password'); 
+          		
+          		// Analytics
+		      	analytics.track( "User repeated sign up", {
+		            name: firstName + " " + lastName,
+		            firstName : firstName,
+		            lastName : lastName,
+		            email: email,
+		            phone : phoneNumber,
+		            location : GPSlocation
+		        });
+
+
+
           		return console.log('We are sorry but this email is already used.');
 
         	}
         	else if(err.message == "Login forbidden [403]"){
         		// Inform the user to verify email
           		swal("Check your email!",   "You're all signed up! Make sure to check your email to verify your account",   'success' );
+          		
+          		// Analytics
+		      	analytics.track( "User Signed Up", {
+		            name: firstName + " " + lastName,
+		            firstName : firstName,
+		            lastName : lastName,
+		            email: email,
+		            phone : phoneNumber,
+		            location : GPSlocation
+		        });
+		        
+		        console.log("You need to verify your email before moving forward.")
 
         	}
          	else {
           		$('#signUpForm').form('add prompt', 'email', 'Something went wrong! Try refreshing the page'); 
+
+
+          		// Analytics
+		      	analytics.track( "Something went wrong during sign Up", {
+		            name: firstName + " " + lastName,
+		            firstName : firstName,
+		            lastName : lastName,
+		            email: email,
+		            phone : phoneNumber,
+		            location : GPSlocation
+		        });
+
           		return console.log("Inform the user that account creation failed" + err);
           	}
         }
@@ -292,7 +329,15 @@ var signUpUser = function(){
           // Inform the user with UI Kit to verify email
           swal("Check your email!",   "You're all signed up! Make sure to check your email to verify your account",   'success' );
           
-
+          // Analytics
+	      analytics.identify( Meteor.user()._id, {
+	            name: firstName + " " + lastName,
+	            firstName : firstName,
+	            lastName : lastName,
+	            email: email,
+	            phone : phoneNumber,
+	            location : GPSlocation
+	        });
          
           
           // Then reset form
