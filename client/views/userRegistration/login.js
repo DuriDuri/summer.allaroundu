@@ -35,7 +35,7 @@ Template.logMeIn.onRendered( function(){
   // Form validation
   // 
   $('#loginForm').form({
-
+    keyboardShortcuts : false,
     inline : true,
     // on     : 'blur',
     fields: {
