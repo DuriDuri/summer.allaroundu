@@ -1,10 +1,16 @@
-
-
-
 Template.home.onRendered(function() {
 	console.log("Hey there! Like looking under the hood? - send me an email at durid@union.edu and let's talk about upcoming projects");
 	GoogleMaps.load();
 
+	// Analytics
+	analytics.identify( Meteor.user()._id, {
+	            name: Meteor.user().profile.FirstName + " " + Meteor.user().profile.LastName,
+                firstName : Meteor.user().profile.FirstName,
+                lastName : Meteor.user().profile.LastName,
+                email: Meteor.user().emails[0].address,
+                entry : "Made it to home page",
+                phone : Meteor.user().profile.PhoneNumber
+	});
     
     GoogleMaps.ready('map', function(map) {
         Meteor.users.find({'emails.verified' : true}).forEach(function(user) {
