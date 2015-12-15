@@ -9,7 +9,7 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
-dburles:google-maps@1.1.1
+dburles:google-maps@1.1.3
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
@@ -31,9 +31,6 @@ iron:middleware-stack@1.0.9
 iron:router@1.0.9
 iron:url@1.0.9
 jeremy:geocomplete@1.6.5_7
-jparker:crypto-core@0.1.0
-jparker:crypto-md5@0.1.1
-jparker:gravatar@0.3.1
 jquery@1.11.3_2
 json@1.0.3
 launch-screen@1.0.2
@@ -59,8 +56,8 @@ reactive-var@1.0.5
 reload@1.1.3
 retry@1.0.3
 routepolicy@1.0.5
-semantic:ui@2.0.7
-semantic:ui-data@2.0.7
+semantic:ui@2.0.8
+semantic:ui-data@2.0.8
 service-configuration@1.0.4
 session@1.1.0
 sewdn:masked-input@1.0.6
